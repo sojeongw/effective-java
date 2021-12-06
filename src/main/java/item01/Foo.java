@@ -41,7 +41,17 @@ public class Foo {
     }
 
     public static Foo getFoo(boolean flag) {
-        return flag ? new Foo() : new BarFoo();
+        Foo foo = new Foo();
+
+        /* 가정
+        * 텍스트 파일에서 Foo의 구현체의 FQCN(Full Qualified Class Name)을 읽어온다.
+        * FQCN에 해당하는 인스턴스를 생성한다.
+        * foo 변수가 해당 인스턴스를 가리키도록 수정한다.
+        * 즉, 텍스트 파일에 뭐가 적혀있냐에 따라 다른 객체를 반환하게 된다.
+        * getFoo() 메서드를 만들고 나서 나중에 Foo 타입의 다른 클래스를 만들어 얼마든지 교체할 수 있다.
+        */
+        foo = new MyFoo();
+        return foo;
     }
 
     public static void main(String[] args) {
@@ -64,10 +74,6 @@ public class Foo {
         // enum의 개수에 따라 RegularEnumSet 또는 JumboEnumSet이 된다.
         // 어차피 감춰져 있는 구현이라 몰라도 됨 ㅎㅎ
         EnumSet<Color> blueAndWhite = EnumSet.of(BLUE, WHITE);
-    }
-
-    static class BarFoo extends Foo {
-
     }
 
     enum Color {
