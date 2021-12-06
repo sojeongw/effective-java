@@ -1,6 +1,9 @@
-package item01;
+package me.whiteship.effectivejava3rd.item01;
 
 public class Foo {
+
+    private static final Foo GOOD_NIGHT = new Foo();
+
     String name;
     String address;
 
@@ -29,6 +32,10 @@ public class Foo {
         return foo;
     }
 
+    public static Foo getFoo() {
+        return GOOD_NIGHT;
+    }
+
     public static void main(String[] args) {
         // 생성자로 만들 때는 이게 뭘 뜻하는지 확실히 알 수 없다.
         // 매번 새로운 객체를 리턴 받는다.
@@ -36,5 +43,8 @@ public class Foo {
 
         // 이름을 주면 좀 더 알기 쉽다.
         Foo foo1 = Foo.withName("keesun");
+
+        // 매번 새로운 객체를 받지 않고 동일한 GOOD_NIGHT 인스턴스를 받게 된다.
+        Foo foo2 = Foo.getFoo();
     }
 }
