@@ -73,4 +73,17 @@ public class Foo {
     enum Color {
         RED, BLUE, WHITE
     }
+
+    // private static method가 필요한 이유는 private 메서드가 필요한 이유와 같다.
+    // static에서는 static만 호출하고 사용할 수 있고 private한게 필요하면 private static을 만드는 것이다.
+    public static void doSomething() {
+        게임을하고잔다();
+    }
+
+    public static void doSomethingTomorrow() {
+        게임을하고잔다();
+    }
+
+    private static void 게임을하고잔다() {
+    }
 }
