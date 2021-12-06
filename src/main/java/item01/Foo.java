@@ -1,4 +1,8 @@
-package me.whiteship.effectivejava3rd.item01;
+package item01;
+
+import java.util.EnumSet;
+
+import static item01.Foo.Color.*;
 
 public class Foo {
 
@@ -36,6 +40,10 @@ public class Foo {
         return GOOD_NIGHT;
     }
 
+    public static Foo getFoo(boolean flag) {
+        return flag ? new Foo() : new BarFoo();
+    }
+
     public static void main(String[] args) {
         // 생성자로 만들 때는 이게 뭘 뜻하는지 확실히 알 수 없다.
         // 매번 새로운 객체를 리턴 받는다.
@@ -46,5 +54,23 @@ public class Foo {
 
         // 매번 새로운 객체를 받지 않고 동일한 GOOD_NIGHT 인스턴스를 받게 된다.
         Foo foo2 = Foo.getFoo();
+
+        // 매개 변수를 어떻게 넘기냐에 따라 리턴하는 객체가 Foo거나 BarFoo가 된다.
+        Foo foo3 = Foo.getFoo(false);
+
+        // Color 이넘에 대한 set을 만든다.
+        EnumSet<Color> colors = EnumSet.allOf(Color.class);
+
+        // enum의 개수에 따라 RegularEnumSet 또는 JumboEnumSet이 된다.
+        // 어차피 감춰져 있는 구현이라 몰라도 됨 ㅎㅎ
+        EnumSet<Color> blueAndWhite = EnumSet.of(BLUE, WHITE);
+    }
+
+    static class BarFoo extends Foo {
+
+    }
+
+    enum Color {
+        RED, BLUE, WHITE
     }
 }
